@@ -1,0 +1,47 @@
+DROP TABLE IF EXISTS AuthorityTokenTable;
+DROP TABLE IF EXISTS EventsTable;
+DROP TABLE IF EXISTS PersonTable;
+DROP TABLE IF EXISTS UsersTable;
+
+CREATE TABLE AuthorityTokenTable (
+	authID	    TEXT NOT NULL UNIQUE,
+	associatedUsername	TEXT NOT NULL,
+	personID	TEXT NOT NULL,
+	PRIMARY KEY(authID)
+);
+
+CREATE TABLE EventsTable (
+	eventID	TEXT NOT NULL UNIQUE,
+	associatedUsername	TEXT NOT NULL,
+	personID	INTEGER NOT NULL,
+	latitude	REAL NOT NULL,
+	longitude	REAL NOT NULL,
+	country	    TEXT NOT NULL,
+	city	    TEXT NOT NULL,
+	eventType	TEXT NOT NULL,
+	eventYear	INTEGER NOT NULL,
+	PRIMARY KEY(eventID)
+);
+
+CREATE TABLE PersonTable (
+	personID	TEXT NOT NULL UNIQUE,
+	associatedUsername	TEXT NOT NULL,
+	firstName	TEXT NOT NULL,
+	lastName	TEXT NOT NULL,
+	gender	    TEXT NOT NULL,
+	father	    TEXT,
+	mother	    TEXT,
+	spouse	    TEXT,
+	PRIMARY KEY(personID)
+);
+
+CREATE TABLE UsersTable (
+	userName	TEXT NOT NULL UNIQUE,
+	password	TEXT NOT NULL,
+	email	    TEXT NOT NULL,
+	firstName	TEXT NOT NULL,
+	lastName	TEXT NOT NULL,
+	gender	    TEXT NOT NULL,
+	personID	TEXT NOT NULL,
+	PRIMARY KEY(userName)
+);
